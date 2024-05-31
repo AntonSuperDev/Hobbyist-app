@@ -1,0 +1,66 @@
+{
+  "name": "hobbyist-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start dist/app.js --name hb-backend",
+    "lint": "eslint . --ext .ts",
+    "start:dev": "nodemon src/app.ts",
+    "start:devDB": "TEST_DB=yes nodemon src/app.ts",
+    "dev:inspect": "node  --inspect ./dist/app.js",
+    "dev": "node src/app.js",
+    "build": "tsc",
+    "postinstall": " npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhnybrohn/hobbyist-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhnybrohn/hobbyist-app/issues"
+  },
+  "homepage": "https://github.com/bhnybrohn/hobbyist-app#readme",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/multer": "^1.4.7",
+    "@types/node-cron": "^3.0.1",
+    "@types/nodemailer": "^6.4.4",
+    "@types/puppeteer": "^5.4.6",
+    "@types/underscore": "^1.11.4",
+    "aws-sdk": "^2.1129.0",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.29.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "natural": "^5.2.3",
+    "node-cron": "^3.0.0",
+    "nodemailer": "^6.7.4",
+    "nodemon": "^2.0.16",
+    "puppeteer": "^14.0.0",
+    "remove-stopwords": "^1.0.3",
+    "typescript": "^4.6.4",
+    "underscore": "^1.13.3",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.14.0"
+  }
+}

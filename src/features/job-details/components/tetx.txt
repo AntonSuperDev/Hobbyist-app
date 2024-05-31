@@ -1,0 +1,44 @@
+        var newItems10 = res.data.filter((a: any) => {
+          var date = Moment(Date.parse(a.createdAt));
+          return (
+            date >= Moment(today).subtract(10, 'day') &&
+            date <= Moment(today)
+          );
+        });
+        setDataOnItem10(newItems10);
+
+        var newItems30 = res.data.filter((a: any) => {
+          var date = Moment(Date.parse(a.createdAt));
+          return (
+            date >= Moment(today).subtract(30, 'day') &&
+            date <= Moment(today)
+          );
+        });
+        setDataOnItem30(newItems30);
+
+        var newItems180 = res.data.filter((a: any) => {
+          var date = Moment(Date.parse(a.createdAt));
+          return (
+            date >= Moment(today).subtract(180, 'day') &&
+            date <= Moment(today)
+          );
+        });
+        setDataOnItem180(newItems180);
+
+        var newItems180 = res.data.filter((a: any) => {
+          var date = Moment(Date.parse(a.createdAt));
+          return (
+            date >= Moment(today).subtract(180, 'day') &&
+            date <= Moment(today)
+          );
+        });
+        setDataOnItem180(newItems180);
+
+        var newItems360 = res.data.filter((a: any) => {
+          var date = Moment(Date.parse(a.createdAt));
+          return (
+            date >= Moment(today).subtract(360, 'day') &&
+            date <= Moment(today)
+          );
+        });
+        setDataOnItem360(newItems360);

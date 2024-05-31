@@ -1,0 +1,5 @@
+Backend/node_modules
+Backend/dist
+Backend/app-logs.log
+Backend/.env
+node_modules

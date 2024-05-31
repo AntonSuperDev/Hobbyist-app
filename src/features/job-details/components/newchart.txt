@@ -1,0 +1,263 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import {
+  ChartBackground,
+  ChartFilterContainer,
+  ChartFilterText,
+  ChartIconImage,
+  ChartItemLabelText,
+  ChartLegend,
+  ChartLegendGroup,
+  ChartLegendlabel,
+  ChartLegendlabelText,
+  ChartLegendlabelTextActive,
+  ChartTimeLabelText,
+  ChartTimeLabelTextDivider,
+  OnTouch,
+} from './chart.styles';
+import React, {FC, useCallback, useEffect, useState} from 'react';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import ChartIcon from '../../../../assets/chartind.png';
+import ChartIcon1 from '../../../../assets/chartind1.png';
+import {Dimensions} from 'react-native';
+import {LineChart} from 'react-native-chart-kit';
+import {Loading} from '../../auth/components/login.styles';
+import Moment from 'moment';
+import {Spacer} from '../../../components/utility/spacer';
+import {Text} from 'react-native';
+import {View} from 'react-native';
+
+const getWidth = Dimensions.get('window').width;
+const today = new Date();
+interface Props {
+  dataOnItem: any;
+  dataOnCat: any;
+  item_id: any;
+  user: any;
+  count: any;
+  navigation: any;
+  avgOnItem: any;
+  avgOnCat: any;
+  medianOnCat: any;
+  medianOnItem: any;
+}
+// const date = new Date(today).toLocaleDateString("de");
+const Chart: FC<Props> = ({
+  dataOnItem,
+  dataOnCat,
+  item_id,
+  user,
+  count,
+  avgOnItem,
+  avgOnCat,
+  medianOnCat,
+  medianOnItem,
+  navigation,
+}) => {
+const [ChartData, setChartData] = useState({
+    labels: [
+      `${Moment(today).subtract(count, 'day').format('MM/DD/YYYY')}`,
+      `${Moment(today).format('MM/DD/YYYY')}`,
+    ],
+    datasets: [
+      medianOnItem && dataOnItem.length !== 0
+        ? {
+            data: dataOnItem.length
+              ? dataOnItem.map((item: any) => item.median)
+              : [0, 0],
+            strokeWidth: 1,
+            color: () => '#FD7474',
+          }
+        : {
+            data: dataOnItem.length ? [0, 0] : [0, 0],
+            strokeWidth: 1,
+            color: () => 'transparent',
+          },
+      avgOnItem && dataOnItem.length !== 0
+        ? {
+            data: dataOnItem.length
+              ? dataOnItem.map((item: any) => item.average)
+              : [0, 0],
+            strokeWidth: 1,
+            strokeDasharray: 2,
+            color: () => '#81BDCA',
+          }
+        : {
+            data: dataOnItem.length ? [0, 0] : [0, 0],
+            strokeWidth: 1,
+            strokeDasharray: 2,
+            color: () => 'transparent',
+          },
+      avgOnCat
+        ? {
+            data:
+              user === 'tier-III'
+                ? dataOnCat.length
+                  ? dataOnCat.map((item: any) => item.average)
+                  : [0, 0]
+                : [0, 0],
+            // data: [220, 230],
+            strokeWidth: 1,
+            strokeDasharray: 2,
+            color: () => '#000000',
+          }
+        : {
+            data: dataOnCat.length ? [0, 0] : [0, 0],
+            // data: [220, 230],
+            strokeWidth: 1,
+            strokeDasharray: 2,
+            color: () => 'transparent',
+          },
+      medianOnCat
+        ? {
+            data:
+              user === 'tier-III'
+                ? dataOnCat.length
+                  ? dataOnCat.map((item: any) => item.median)
+                  : [0, 0]
+                : [0, 0],
+            // data: [200, 210],
+            strokeWidth: 1,
+            strokeDasharray: 2,
+            color: () => '#1cc88a',
+          }
+        : {
+            data: dataOnCat.length ? [0, 0] : [0, 0],
+            // data: [200, 210],
+            strokeWidth: 1,
+            strokeDasharray: 2,
+            color: () => 'transparent',
+          },
+    ],
+  });
+
+
+  useEffect(() => {
+    setChartData({
+      labels: [
+        `${Moment(today).subtract(count, 'day').format('MM/DD/YYYY')}`,
+        `${Moment(today).format('MM/DD/YYYY')}`,
+      ],
+      datasets: [
+        medianOnItem && dataOnItem.length !== 0
+          ? {
+              data: dataOnItem.length
+                ? dataOnItem.map((item: any) => item.median)
+                : [0, 0],
+              strokeWidth: 1,
+              color: () => '#FD7474',
+            }
+          : {
+              data: dataOnItem.length ? [0, 0] : [0, 0],
+              strokeWidth: 1,
+              color: () => 'transparent',
+            },
+        avgOnItem && dataOnItem.length !== 0
+          ? {
+              data: dataOnItem.length
+                ? dataOnItem.map((item: any) => item.average)
+                : [0, 0],
+              strokeWidth: 1,
+              strokeDasharray: 2,
+              color: () => '#81BDCA',
+            }
+          : {
+              data: dataOnItem.length ? [0, 0] : [0, 0],
+              strokeWidth: 1,
+              strokeDasharray: 2,
+              color: () => 'transparent',
+            },
+        avgOnCat
+          ? {
+              data:
+                user === 'tier-III'
+                  ? dataOnCat.length
+                    ? dataOnCat.map((item: any) => item.average)
+                    : [0, 0]
+                  : [0, 0],
+              // data: [220, 230],
+              strokeWidth: 1,
+              strokeDasharray: 2,
+              color: () => '#000000',
+            }
+          : {
+              data: dataOnCat.length ? [0, 0] : [0, 0],
+              // data: [220, 230],
+              strokeWidth: 1,
+              strokeDasharray: 2,
+              color: () => 'transparent',
+            },
+        medianOnCat
+          ? {
+              data:
+                user === 'tier-III'
+                  ? dataOnCat.length
+                    ? dataOnCat.map((item: any) => item.median)
+                    : [0, 0]
+                  : [0, 0],
+              // data: [200, 210],
+              strokeWidth: 1,
+              strokeDasharray: 2,
+              color: () => '#1cc88a',
+            }
+          : {
+              data: dataOnCat.length ? [0, 0] : [0, 0],
+              // data: [200, 210],
+              strokeWidth: 1,
+              strokeDasharray: 2,
+              color: () => 'transparent',
+            },
+      ],
+    });
+  }, [ChartData]);
+  const chartConfig = {
+    backgroundColor: '#1cc910',
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientToOpacity: 0,
+    fillShadowGradientToOpacity: 0,
+    fillShadowGradientFromOffset: 0,
+    fillShadowGradientFromOpacity: 0,
+    useShadowColorFromDataset: false,
+    color: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
+    // labelColor: (opacity = 0.7) => `rgba(255, 255, 255, 0.72)`,
+    decimalPlaces: 2,
+    propsForDots: {
+      r: '1',
+      strokeWidth: '6',
+    },
+    style: {
+      borderRadius: 1,
+      // color: 'black',
+    },
+  };
+
+  const chartStyle = {
+    marginVertical: 8,
+    marginLeft: -20,
+  };
+
+  return (
+    <>
+      <Spacer />
+      <LineChart
+        // bezier
+        withHorizontalLabels={true}
+        withVerticalLabels={true}
+        data={ChartData}
+        width={getWidth - 5}
+        height={200}
+        withInnerLines={false}
+        withOuterLines={true}
+        chartConfig={chartConfig}
+        style={chartStyle}
+        bezier
+      />
+    </>
+  );
+};
+
+export default Chart;

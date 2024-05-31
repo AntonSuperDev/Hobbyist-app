@@ -1,0 +1,38 @@
+export const colors = {
+  brand: {
+    primary: '#3CB474',
+    secondary: '#5282BD',
+    muted: '#C6DAF7',
+  },
+  ui: {
+    primary: '#262626',
+    secondary: '#757575',
+    tertiary: '#F1F1F1',
+    quaternary: '#FFFFFF',
+    quinary: '#8ECFAD',
+    disabled: '#DEDEDE',
+    error: '#D0421B',
+    success: '#138000',
+  },
+  bg: {
+    primary: '#FFFFFF',
+    secondary: '#3CB474',
+    tertiary: '#F4F6FB',
+    quaternary: '#D7DBE6',
+    quinary: '#8ECFAD',
+    disabled: '#4B4A4A',
+    success: '#138000',
+  },
+  text: {
+    primary: '#6A6A6A',
+    secondary: '#3CB474',
+    tertiary: '#096C5C',
+    quaternary: '#F1E047',
+    quinary: '#8ECFAD',
+    disabled: '#9C9C9C',
+    inverse: '#FFFFFF',
+    error: '#D0421B',
+    success: '#138000',
+    dark: '#000000',
+  },
+};
